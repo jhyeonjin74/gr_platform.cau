@@ -224,6 +224,7 @@ body.drawer-open{overflow:hidden}
 .tag.amber{background:var(--amber-50);color:#8A6212;border:1px solid #E8D3A6}
 .news .t{font-weight:600}
 .news .m{grid-column:2;font-size:14px;color:var(--text-soft)}
+.news .new{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--red);color:#fff;font-size:11px;font-weight:800;vertical-align:2px;margin-left:4px}
 
 /* ---------- 로드맵 / 타임라인 ---------- */
 .timeline{display:grid;gap:16px;counter-reset:yr}
@@ -888,7 +889,7 @@ footer a{color:#fff}
   <div class="wrap">
     <div>
       <b>중앙대학교 건축학부 그린리모델링 인재양성 플랫폼 사업단</b>
-      <p>문의 <a href="mailto:grprogram.cau@gmail.com">grprogram.cau@gmail.com</a> · 사무실 207관 336호</p>
+      <p>문의 <a href="mailto:grprogram.cau@gmail.com">grprogram.cau@gmail.com</a></p>
     </div>
     <div class="foot-links">
       <a class="btn btn-ghost-w" data-link="preRegister" href="#">예비등록</a>
@@ -921,16 +922,15 @@ const EMBEDS = {
   drive: ""
 };
 
-// 3) 공지 — Google Sheets로 관리 (권장)
-//    시트 1행 머리글: 분류 | 제목 | 날짜 | 요약 | 링크
-//    새 공지는 맨 아래 줄에 추가 → 홈페이지에는 최신순(아래 줄이 위로)으로 표시
-//    [파일 → 공유 → 웹에 게시 → 쉼표로 구분된 값(.csv)]로 받은 주소를 아래에 붙여넣기
+// 3) 공지 — Google Forms 응답 시트로 관리 (작성일 자동 기록)
+//    폼 질문 이름: 분류 | 제목 | 일정 | 요약 | 링크  (응답 시트의 '타임스탬프'가 게시일로 표시됨)
+//    응답 시트에서 [파일 → 공유 → 웹에 게시 → 응답 시트 · 쉼표로 구분된 값(.csv)] 주소를 아래에 붙여넣기
 const NOTICE_SHEET_CSV = "";
 
 // 4) 시트 주소가 비어 있거나 불러오지 못할 때 보여줄 공지 (최신 글을 맨 위에)
 const NEWS = [
-  { tag: "모집",   title: "2026-2 GR 기술강습회 참가자 모집", date: "일정 추후 공지", summary: "비교과 필수 프로그램입니다. 레인보우시스템에서 신청해 주세요.", url: "" },
-  { tag: "설명회", title: "2027-1 특성화 프로그램 설명회",   date: "수강신청 전 개최 예정", summary: "이수 체계와 예비등록 방법을 안내합니다.", url: "" }
+  { tag: "모집",   title: "2026-2 GR 기술강습회 참가자 모집", posted: "", date: "일정 추후 공지", summary: "비교과 필수 프로그램입니다. 레인보우시스템에서 신청해 주세요.", url: "" },
+  { tag: "설명회", title: "2027-1 특성화 프로그램 설명회",   posted: "", date: "수강신청 전 개최 예정", summary: "이수 체계와 예비등록 방법을 안내합니다.", url: "" }
 ];
 
 /* =========================================================
@@ -958,7 +958,9 @@ const NEWS = [
   // 소식 렌더링
   const esc = s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   function item(n){
-    const inner = `<span class="tag${n.tag==='설명회'?' amber':''}">${esc(n.tag)}</span><span class="t">${esc(n.title)}</span><span class="m">${esc(n.date)}${n.summary?' · '+esc(n.summary):''}</span>`;
+    const meta = [n.posted && ('게시 '+n.posted), n.date && ('일정 '+n.date), n.summary].filter(Boolean).map(esc).join(' · ');
+    const isNew = n.time && (Date.now()-n.time) < 7*864e5;
+    const inner = `<span class="tag${n.tag==='설명회'?' amber':''}">${esc(n.tag||'공지')}</span><span class="t">${esc(n.title)}${isNew?' <span class="new">N</span>':''}</span><span class="m">${meta}</span>`;
     return n.url ? `<li><a href="${esc(n.url)}" target="_blank" rel="noopener">${inner}</a></li>` : `<li><div>${inner}</div></li>`;
   }
   const empty = '<li><div><span class="tag">안내</span><span class="t">새 공지가 곧 올라옵니다.</span></div></li>';
@@ -981,9 +983,20 @@ const NEWS = [
   renderNews(NEWS);
   if(NOTICE_SHEET_CSV){
     fetch(NOTICE_SHEET_CSV).then(r=>{ if(!r.ok) throw 0; return r.text(); }).then(t=>{
-      const list = parseCSV(t).slice(1)
-        .map(c=>({tag:(c[0]||'').trim(), title:(c[1]||'').trim(), date:(c[2]||'').trim(), summary:(c[3]||'').trim(), url:(c[4]||'').trim()}))
-        .filter(n=>n.title).reverse();
+      const rows = parseCSV(t).filter(r=>r.some(c=>c.trim()));
+      if(rows.length<2) return;
+      const head = rows[0].map(x=>x.trim());
+      const col = (...keys)=>head.findIndex(x=>keys.some(k=>x.includes(k)));
+      const C = { time:col('타임스탬프','Timestamp','작성일','게시일'), tag:col('분류'), title:col('제목'),
+                  date:col('일정','기간','날짜'), summary:col('요약','내용'), url:col('링크','URL','url') };
+      const g = (r,i)=> i<0 ? '' : (r[i]||'').trim();
+      const list = rows.slice(1).map((r,idx)=>{
+        const m = g(r,C.time).match(/(\d{4})\D+(\d{1,2})\D+(\d{1,2})/);
+        const d = m ? new Date(+m[1], m[2]-1, +m[3]) : null;
+        return { idx, tag:g(r,C.tag), title:g(r,C.title), date:g(r,C.date), summary:g(r,C.summary), url:g(r,C.url),
+                 time: d ? d.getTime() : 0,
+                 posted: m ? `${m[1]}.${m[2].padStart(2,'0')}.${m[3].padStart(2,'0')}` : '' };
+      }).filter(n=>n.title).sort((a,b)=> (b.time-a.time) || (b.idx-a.idx));
       renderNews(list);
     }).catch(()=>{});
   }
