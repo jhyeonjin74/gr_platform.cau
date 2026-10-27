@@ -290,6 +290,10 @@ tr.req:hover td{background:#F6EDD9}
 .formula .op{color:var(--green-500);font-weight:400}
 .formula .tot{background:var(--green-900);color:#fff;padding:4px 16px;border-radius:var(--r-pill)}
 
+.apply-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--r-card);padding:24px}
+.apply-card .ic-num{width:32px;height:32px;border-radius:50%;background:#9FD3B6;color:var(--green-900);display:grid;place-items:center;font-weight:700;font-size:15px}
+.apply-card h3{color:#fff;font-size:18px;margin:14px 0 6px}
+.apply-card p{color:var(--text-w-soft);font-size:15px;line-height:1.7}
 .callout{border-radius:var(--r-card);padding:20px 22px;background:var(--green-100);color:var(--green-900)}
 .callout.amber{background:var(--amber-50);color:#5E430C;border:1px solid #EBDCB8}
 .callout h3{font-size:17px;margin-bottom:6px}
@@ -396,13 +400,14 @@ footer a{color:#fff}
       <span class="brand-text"><b>그린리모델링 인재양성 플랫폼</b><span>중앙대학교 건축학부</span></span>
     </a>
     <ul class="menu" id="menu">
-      <li><a href="#about" data-nav="about">사업 안내</a></li>
+      <li><a href="#about" data-nav="about">사업 안내</a>
+        <ul class="drop"><li><a href="#about/overview">추진 배경</a></li><li><a href="#about/goals">추진 목적</a></li><li><a href="#about/roadmap">연차별 로드맵</a></li></ul></li>
       <li><a href="#curriculum" data-nav="curriculum">이수 안내</a>
         <ul class="drop"><li><a href="#curriculum/system">이수 체계도</a></li><li><a href="#curriculum/course">교과 영역</a></li><li><a href="#curriculum/extra">비교과 영역</a></li><li><a href="#curriculum/benefit">혜택 (마이크로디그리·장학금)</a></li></ul></li>
       <li><a href="#join" data-nav="join">참여하기</a>
         <ul class="drop"><li><a href="#join/register">예비등록</a></li><li><a href="#join/guide">참여 후 이용 안내</a></li><li><a href="#join/apply">비교과 신청</a></li><li><a data-link="faq" href="#">FAQ ↗</a></li></ul></li>
       <li><a href="#news" data-nav="news">소식</a>
-        <ul class="drop"><li><a href="#news/notice">모집·설명회</a></li><li><a href="#news/gallery">활동 갤러리</a></li></ul></li>
+        <ul class="drop"><li><a href="#news/notice">공지</a></li><li><a href="#news/gallery">활동 갤러리</a></li></ul></li>
       <li><a href="#archive" data-nav="archive">자료실</a></li>
     </ul>
     <a class="btn btn-fill nav-cta" data-link="preRegister" href="#">예비등록</a>
@@ -411,10 +416,10 @@ footer a{color:#fff}
 </header>
 
 <nav class="drawer" id="drawer" aria-label="모바일 메뉴">
-  <h4>사업 안내</h4><a href="#about/overview">사업 개요</a>
+  <h4>사업 안내</h4><a href="#about/overview">추진 배경</a><a href="#about/goals">추진 목적</a><a href="#about/roadmap">연차별 로드맵</a>
   <h4>이수 안내</h4><a href="#curriculum/system">이수 체계도</a><a href="#curriculum/course">교과 영역</a><a href="#curriculum/extra">비교과 영역</a><a href="#curriculum/benefit">혜택 (마이크로디그리·장학금)</a>
   <h4>참여하기</h4><a href="#join/register">예비등록</a><a href="#join/guide">참여 후 이용 안내</a><a href="#join/apply">비교과 신청</a><a data-link="faq" href="#">FAQ ↗</a>
-  <h4>소식</h4><a href="#news/notice">모집·설명회</a><a href="#news/gallery">활동 갤러리</a>
+  <h4>소식</h4><a href="#news/notice">공지</a><a href="#news/gallery">활동 갤러리</a>
   <h4>자료실</h4><a href="#archive">자료실</a>
   <a class="btn btn-fill" data-link="preRegister" href="#">예비등록 하기</a>
 </nav>
@@ -485,7 +490,7 @@ footer a{color:#fff}
       <div class="sec-head"><span class="eyebrow">Quick links</span><h2 class="h-sec mt8">바로가기</h2></div>
       <div class="grid g3">
         <a class="card quick" data-link="preRegister" href="#"><div><b>예비등록</b><span>특성화 장학 후보생 등록</span></div><span class="arrow">→</span></a>
-        <a class="card quick" data-link="eclass" href="#"><div><b>참여학생 eClass</b><span>공지 · 증빙 제출 · 이수 진행도</span></div><span class="arrow">→</span></a>
+        <a class="card quick" data-link="eclass" href="#"><div><b>참여학생 e-Class</b><span>공지 · 증빙 제출 · 이수 진행도</span></div><span class="arrow">→</span></a>
         <a class="card quick" href="#archive"><div><b>자료실</b><span>안내서 · 홍보물 · 양식</span></div><span class="arrow">→</span></a>
       </div>
     </div>
@@ -514,7 +519,7 @@ footer a{color:#fff}
     </div>
   </section>
 
-  <section class="sec sec-white">
+  <section class="sec sec-white" id="about-goals">
     <div class="wrap">
       <div class="sec-head"><span class="eyebrow">Goals</span><h2 class="h-sec mt8">추진 목적</h2></div>
       <div class="grid g3">
@@ -525,7 +530,7 @@ footer a{color:#fff}
     </div>
   </section>
 
-  <section class="sec">
+  <section class="sec" id="about-roadmap">
     <div class="wrap">
       <div class="sec-head"><span class="eyebrow">Roadmap</span><h2 class="h-sec mt8">연차별 로드맵</h2><p class="soft">사업 기간 2026년 ~ 2028년 (3개년)</p></div>
       <div class="timeline">
@@ -697,7 +702,7 @@ footer a{color:#fff}
       </div>
 
       <div class="card mt24" style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
-        <div><h3 class="h-sub">참여 방법</h3><p class="soft small mt8">비교과 프로그램은 중앙대 레인보우시스템에서 신청합니다. 타 학부 학생도 신청·이수할 수 있습니다.</p></div>
+        <div><h3 class="h-sub">참여 방법</h3><p class="soft small mt8">비교과 프로그램 중 일부는 레인보우시스템에서 신청할 수 있으며, 레인보우시스템 마일리지도 별도로 받을 수 있습니다. 타 학부 학생도 신청·이수할 수 있습니다.</p></div>
         <a class="btn btn-fill" data-link="rainbow" href="#">레인보우시스템 바로가기</a>
       </div>
     </div>
@@ -767,7 +772,7 @@ footer a{color:#fff}
         <ul class="benefit">
           <li>비교과 프로그램, 공모전·학술대회 참가 지원 등 사업 지원 대상</li>
           <li>장학금 예산을 초과할 경우 우선 선정</li>
-          <li>참여학생 eClass 강좌 등록 → 이수 진행도 확인, 증빙 제출</li>
+          <li>참여학생 e-Class 강좌 등록 → 이수 진행도 확인, 증빙 제출</li>
         </ul>
         <p class="note">교과·비교과 이수 인정과 마이크로디그리 취득은 예비등록 여부와 관계없이 이루어집니다.</p>
       </div>
@@ -776,13 +781,13 @@ footer a{color:#fff}
 
   <section class="sec sec-white" id="join-guide">
     <div class="wrap">
-      <div class="sec-head"><span class="eyebrow">How it works</span><h2 class="h-sec mt8">참여 후 이용 안내</h2><p class="soft">예비등록을 마치면 사업단이 참여학생 eClass 강좌에 등록해 드립니다.</p></div>
+      <div class="sec-head"><span class="eyebrow">How it works</span><h2 class="h-sec mt8">참여 후 이용 안내</h2><p class="soft">예비등록을 마치면 사업단이 참여학생 e-Class 강좌에 등록해 드립니다.</p></div>
       <div class="steps">
         <div class="card step"><div class="no">1</div><b>예비등록</b><span>Google Forms</span></div>
-        <div class="card step"><div class="no">2</div><b>eClass 강좌 등록</b><span>사업단이 등록</span></div>
+        <div class="card step"><div class="no">2</div><b>e-Class 강좌 등록</b><span>사업단이 등록</span></div>
         <div class="card step"><div class="no">3</div><b>활동 참여</b><span>교과 · 비교과</span></div>
-        <div class="card step"><div class="no">4</div><b>증빙 제출</b><span>eClass 과제</span></div>
-        <div class="card step"><div class="no">5</div><b>이수 진행도 확인</b><span>eClass 성적 메뉴</span></div>
+        <div class="card step"><div class="no">4</div><b>증빙 제출</b><span>e-Class 과제</span></div>
+        <div class="card step"><div class="no">5</div><b>이수 진행도 확인</b><span>e-Class 성적 메뉴</span></div>
       </div>
       <div class="grid g4 mt24">
         <div class="card"><b style="color:var(--green-900)">공지</b><p class="small soft mt8">교과·비교과 운영 공지 (앱 푸시 알림)</p></div>
@@ -790,20 +795,24 @@ footer a{color:#fff}
         <div class="card"><b style="color:var(--green-900)">이수 진행도</b><p class="small soft mt8">교과 학점·비교과 크레딧·마이크로디그리 단계 확인</p></div>
         <div class="card"><b style="color:var(--green-900)">문의</b><p class="small soft mt8">Q&amp;A 게시판</p></div>
       </div>
-      <div class="center mt24"><a class="btn btn-fill" data-link="eclass" href="#">eClass 바로가기</a></div>
+      <div class="center mt24"><a class="btn btn-fill" data-link="eclass" href="#">e-Class 바로가기</a></div>
     </div>
   </section>
 
-  <section class="sec" id="join-apply">
+  <section class="sec band" id="join-apply">
     <div class="wrap">
-      <div class="card band" style="border-radius:var(--r-card);padding:36px 28px;display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap">
-        <div>
-          <span class="eyebrow">Apply</span>
-          <h2 class="h-sec mt8">비교과 신청</h2>
-          <p class="soft mt8">비교과 프로그램은 레인보우시스템에서 신청합니다. 신청 가능한 프로그램과 일정은 소식 페이지와 eClass 공지에서 확인해 주세요.</p>
-        </div>
-        <div class="btn-row"><a class="btn btn-white" data-link="rainbow" href="#">레인보우시스템 바로가기</a><a class="btn btn-ghost-w" href="#news/notice">모집 소식 보기</a></div>
+      <div class="sec-head">
+        <span class="eyebrow">Apply</span>
+        <h2 class="h-sec mt8">비교과 신청</h2>
+        <p class="lead mt16">비교과 프로그램 중 일부는 중앙대학교 <b style="color:#fff">레인보우시스템</b>을 통해 참가 신청할 수 있으며, 이수하면 레인보우시스템 마일리지도 별도로 받을 수 있습니다.</p>
       </div>
+      <div class="grid g3">
+        <div class="apply-card"><span class="ic-num">1</span><h3>공지 확인</h3><p>프로그램별 모집 기간과 신청 방법은 홈페이지 공지에서 안내합니다. 레인보우시스템 신청 대상 여부도 공지에 표기합니다.</p></div>
+        <div class="apply-card"><span class="ic-num">2</span><h3>레인보우시스템 신청</h3><p>레인보우시스템 대상 프로그램은 로그인 후 비교과 프로그램 목록에서 신청합니다. 타 학부 학생도 신청할 수 있습니다.</p></div>
+        <div class="apply-card"><span class="ic-num">3</span><h3>크레딧 + 마일리지</h3><p>참여한 프로그램은 사업단 비교과 크레딧으로 인정되고, 레인보우시스템 마일리지는 그와 별도로 적립됩니다.</p></div>
+      </div>
+      <p class="note mt16" style="color:var(--text-w-soft)">※ 레인보우시스템 대상이 아닌 프로그램은 공지에 안내된 방법으로 신청해 주세요.</p>
+      <div class="btn-row mt24"><a class="btn btn-white" data-link="rainbow" href="#">레인보우시스템 바로가기</a><a class="btn btn-ghost-w" href="#news/notice">공지 보기</a></div>
     </div>
   </section>
 
@@ -817,14 +826,14 @@ footer a{color:#fff}
     <div class="wrap">
       <div class="crumb"><a href="#home">홈</a> / 소식</div>
       <h1>소식</h1>
-      <p>모집·설명회 안내와 사업단 활동을 전합니다.</p>
-      <div class="subtabs"><a href="#news/notice">모집·설명회</a><a href="#news/gallery">활동 갤러리</a></div>
+      <p>모집·설명회 등 사업단 공지와 활동을 전합니다.</p>
+      <div class="subtabs"><a href="#news/notice">공지</a><a href="#news/gallery">활동 갤러리</a></div>
     </div>
   </section>
 
   <section class="sec" id="news-notice">
     <div class="wrap">
-      <div class="sec-head"><span class="eyebrow">Notice</span><h2 class="h-sec mt8">모집·설명회</h2></div>
+      <div class="sec-head"><span class="eyebrow">Notice</span><h2 class="h-sec mt8">공지</h2></div>
       <ul class="news" id="news-all"></ul>
       <h3 class="h-sub mt40" style="margin-bottom:16px">사업단 일정</h3>
       <div class="embed" data-embed="calendar" data-height="560"></div>
@@ -882,7 +891,6 @@ footer a{color:#fff}
       <p>문의 <a href="mailto:grprogram.cau@gmail.com">grprogram.cau@gmail.com</a> · 사무실 207관 336호</p>
     </div>
     <div class="foot-links">
-      <a class="btn btn-white" data-link="eclass" href="#">참여학생 eClass 바로가기</a>
       <a class="btn btn-ghost-w" data-link="preRegister" href="#">예비등록</a>
     </div>
     <div class="foot-bottom">본 사업은 국토안전관리원 그린리모델링 인재양성 플랫폼 사업의 지원을 받아 운영됩니다.</div>
@@ -900,8 +908,8 @@ footer a{color:#fff}
 const LINKS = {
   preRegister: "https://docs.google.com/forms/d/e/1FAIpQLSeVygg3ck6C7aQpEneGTTgRE3kpXpjlQC468uZM78RvDAPYig/viewform",  // 예비등록 Google Forms 주소
   faq:         "https://kyungmin-kang-01.github.io/GR_FAQ/",  // FAQ 사이트
-  eclass:      "https://eclass3.cau.ac.kr/",  // 참여학생 eClass 강좌 주소
-  rainbow:     "",  // 레인보우시스템 주소
+  eclass:      "https://eclass3.cau.ac.kr/",  // 참여학생 e-Class 강좌 주소
+  rainbow:     "https://rainbow.cau.ac.kr/site/reservation/lecture/lectureList?menuid=001015003001&submode=lecture&reservegroupid=1&orderby=mylecture&mid=2026120231",  // 레인보우시스템 비교과 목록
   photos:      ""   // Google Photos 전체 앨범 주소
 };
 
@@ -913,7 +921,13 @@ const EMBEDS = {
   drive: ""
 };
 
-// 3) 소식 — 최신 글을 맨 위에 추가하세요. url이 없으면 클릭 없이 표시됩니다
+// 3) 공지 — Google Sheets로 관리 (권장)
+//    시트 1행 머리글: 분류 | 제목 | 날짜 | 요약 | 링크
+//    새 공지는 맨 아래 줄에 추가 → 홈페이지에는 최신순(아래 줄이 위로)으로 표시
+//    [파일 → 공유 → 웹에 게시 → 쉼표로 구분된 값(.csv)]로 받은 주소를 아래에 붙여넣기
+const NOTICE_SHEET_CSV = "";
+
+// 4) 시트 주소가 비어 있거나 불러오지 못할 때 보여줄 공지 (최신 글을 맨 위에)
 const NEWS = [
   { tag: "모집",   title: "2026-2 GR 기술강습회 참가자 모집", date: "일정 추후 공지", summary: "비교과 필수 프로그램입니다. 레인보우시스템에서 신청해 주세요.", url: "" },
   { tag: "설명회", title: "2027-1 특성화 프로그램 설명회",   date: "수강신청 전 개최 예정", summary: "이수 체계와 예비등록 방법을 안내합니다.", url: "" }
@@ -947,9 +961,32 @@ const NEWS = [
     const inner = `<span class="tag${n.tag==='설명회'?' amber':''}">${esc(n.tag)}</span><span class="t">${esc(n.title)}</span><span class="m">${esc(n.date)}${n.summary?' · '+esc(n.summary):''}</span>`;
     return n.url ? `<li><a href="${esc(n.url)}" target="_blank" rel="noopener">${inner}</a></li>` : `<li><div>${inner}</div></li>`;
   }
-  const empty = '<li><div><span class="tag">안내</span><span class="t">새 소식이 곧 올라옵니다.</span></div></li>';
-  $('#news-home').innerHTML = NEWS.length ? NEWS.slice(0,3).map(item).join('') : empty;
-  $('#news-all').innerHTML  = NEWS.length ? NEWS.map(item).join('') : empty;
+  const empty = '<li><div><span class="tag">안내</span><span class="t">새 공지가 곧 올라옵니다.</span></div></li>';
+  function renderNews(list){
+    $('#news-home').innerHTML = list.length ? list.slice(0,3).map(item).join('') : empty;
+    $('#news-all').innerHTML  = list.length ? list.map(item).join('') : empty;
+  }
+  function parseCSV(t){
+    const rows=[]; let row=[], f='', q=false;
+    for(let i=0;i<t.length;i++){ const c=t[i];
+      if(q){ if(c=='"'){ if(t[i+1]=='"'){f+='"';i++;} else q=false; } else f+=c; }
+      else if(c=='"') q=true;
+      else if(c==','){ row.push(f); f=''; }
+      else if(c=='\n'||c=='\r'){ if(c=='\r'&&t[i+1]=='\n') i++; row.push(f); rows.push(row); row=[]; f=''; }
+      else f+=c;
+    }
+    if(f||row.length){ row.push(f); rows.push(row); }
+    return rows;
+  }
+  renderNews(NEWS);
+  if(NOTICE_SHEET_CSV){
+    fetch(NOTICE_SHEET_CSV).then(r=>{ if(!r.ok) throw 0; return r.text(); }).then(t=>{
+      const list = parseCSV(t).slice(1)
+        .map(c=>({tag:(c[0]||'').trim(), title:(c[1]||'').trim(), date:(c[2]||'').trim(), summary:(c[3]||'').trim(), url:(c[4]||'').trim()}))
+        .filter(n=>n.title).reverse();
+      renderNews(list);
+    }).catch(()=>{});
+  }
 
   // 페이지 전환 (#page/section)
   const pages = $$('[data-page]').map(p=>p.dataset.page);
